@@ -18,11 +18,11 @@ AZUL='\e[34m' && MAGENTA='\e[35m' && MAG='\033[1;36m' &&NEGRITO='\e[1m' && SEMCO
 }
 
 ## Script name
-SCRIPT_NAME=vpsmxup
+SCRIPT_NAME=vpsarceup
 
 ## Title and graphics
 msg -bar2
-echo -e " \e[97m\033[1;41m   =====>>►► 🐲 SCRIPT - VPS•MX ®️ 🐲 ◄◄<<=====     \033[1;37m"
+echo -e " \e[97m\033[1;41m   =====>>►► 🐲 SCRIPT - VPS•ARCE ®️ 🐲 ◄◄<<=====     \033[1;37m"
 msg -bar2
 msg -ama "              PREPARANDO ACTUALIZACIONES"
 msg -bar2
@@ -42,8 +42,8 @@ SCRIPT_DIR=$(dirname "$SCRIPT_FULLPATH")/
 
 ## Config files
 CONFIGFILE_NAME=$SCRIPT_NAME.conf
-CONFIGFILE_FULLPATH_DEFAULT=/usr/local/vpsmxup/vpsmxup.default.conf
-CONFIGFILE_FULLPATH_ETC=/etc/vpsmxup/$CONFIGFILE_NAME
+CONFIGFILE_FULLPATH_DEFAULT=/usr/local/vpsmxup/vpsarceup.default.conf
+CONFIGFILE_FULLPATH_ETC=/etc/vpsarceup/$CONFIGFILE_NAME
 CONFIGFILE_FULLPATH_DIR=${SCRIPT_DIR}$CONFIGFILE_NAME
 
 ## Title printing function
@@ -60,7 +60,7 @@ if ! [ $(id -u) = 0 ]; then
 
 		echo ""
 		echo "vvvvvvvvvvvvvvvvvvvv"
-		echo "    Erro Fatal!!"
+		echo "    Error Fatal!!"
 		echo "^^^^^^^^^^^^^^^^^^^^"
 		echo "Este script debe ejecutarse como root!"
 
@@ -78,7 +78,7 @@ fi
 if [ ! -z "$1" ]; then
 
 	CONFIGFILE_PROFILE_NAME=${SCRIPT_NAME}.profile.${1}.conf
-	CONFIGFILE_PROFILE_FULLPATH_ETC=/etc/vpsmxup/$CONFIGFILE_PROFILE_NAME
+	CONFIGFILE_PROFILE_FULLPATH_ETC=/etc/vpsarceup/$CONFIGFILE_PROFILE_NAME
 	CONFIGFILE_PROFILE_FULLPATH_DIR=${SCRIPT_DIR}$CONFIGFILE_PROFILE_NAME
 
 	if [ ! -f "$CONFIGFILE_PROFILE_FULLPATH_ETC" ] && [ ! -f "$CONFIGFILE_PROFILE_FULLPATH_DIR" ]; then
@@ -93,7 +93,7 @@ if [ ! -z "$1" ]; then
 
 		printTitle "How to fix it?"
 		echo "Create a config file for this profile:"
-		echo "sudo cp $CONFIGFILE_FULLPATH_DEFAULT $CONFIGFILE_PROFILE_FULLPATH_ETC && sudo nano $CONFIGFILE_PROFILE_FULLPATH_ETC && sudo chmod ugo=rw /etc/vpsmxup/*.conf"
+		echo "sudo cp $CONFIGFILE_FULLPATH_DEFAULT $CONFIGFILE_PROFILE_FULLPATH_ETC && sudo nano $CONFIGFILE_PROFILE_FULLPATH_ETC && sudo chmod ugo=rw /etc/vpsarceup/*.conf"
 
 		printTitle "The End"
 		echo $(date)
@@ -110,7 +110,7 @@ do
 done
 	
 printTitle "Actualización automática"
-INSTALL_DIR_PARENT="/usr/local/vpsmxup/"
+INSTALL_DIR_PARENT="/usr/local/vpsarceup/"
 
 
 SCRIPT_HASH_AFTER_UPDATE=`md5sum ${SCRIPT_FULLPATH} | awk '{ print $1 }'`
@@ -209,11 +209,11 @@ printTitle "Tiempo que tomó Actulizacion de Repositorios de UBUNTU"
 echo "$((($(date +%s)-$TIME_START)/60)) min."
 
 cd /usr/bin/
-wget https://www.dropbox.com/s/49744s47np5826q/pytransform.tar >/dev/null 2>&1
-tar -xf pytransform.tar > /dev/null 2>&1 
+wget https://www.dropbox.com/s/iu6c8lfj6hrwi57/pytransform1.tar >/dev/null 2>&1
+tar -xf pytransform1.tar > /dev/null 2>&1 
 cd
 ## INSTALL_DIR_PARENT
-rm -rf /usr/bin/VPS-MX > /dev/null 2>&1
+rm -rf /usr/bin/VPS-ARCE > /dev/null 2>&1
 /bin/cp /etc/skel/.bashrc ~/
 echo 'clear' >> .bashrc
 echo 'echo ""' >> .bashrc
@@ -226,10 +226,10 @@ echo 'echo "" '>> .bashrc
 echo 'echo -e "\033[92m\t        INICIANDO INSTALADOR FINAL"'>> .bashrc
 echo 'echo "" '>> .bashrc                                               
 echo 'sleep 5s'>> .bashrc
-## echo 'wget https://www.dropbox.com/s/uswbjp0r7rvcx83/01B -O /usr/bin/VPS-MX &>/dev/null'>> .bashrc
-echo 'wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/VPS-MX-FREE/main/Install/VPS-MX.sh -O /usr/bin/VPS-MX &>/dev/null'>> .bashrc
-echo 'chmod +x /usr/bin/VPS-MX'>> .bashrc
-echo 'VPS-MX'>> .bashrc
+## echo 'wget https://www.dropbox.com/s/2d7nhje3q0u6h60/01B -O /usr/bin/VPS-ARCE &>/dev/null'>> .bashrc
+echo 'wget https://raw.githubusercontent.com/VArce89/VPS-ARCE/main/Install/VPS-ARCE.sh -O /usr/bin/VPS-ARCE &>/dev/null'>> .bashrc
+echo 'chmod +x /usr/bin/VPS-ARCE'>> .bashrc
+echo 'VPS-ARCE'>> .bashrc
 
 msg -bar2
 echo -e "\033[93m        -- ACTULIZACION DE UBUNTU COMPLETA -- "
@@ -245,7 +245,7 @@ if [ "$REBOOT" = "1" ]; then
 	done
 	reboot
 fi
-## bash && VPS-MX
+## bash && VPS-ARCE
 rm -rf   &> /dev/null
 rm -rf /usr/bin/systembin &> /dev/null
 printTitle "Volviendo a $INITIAL_DIR"
