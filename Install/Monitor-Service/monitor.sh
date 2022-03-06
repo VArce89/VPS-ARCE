@@ -18,11 +18,11 @@ EstadoServicio () {
     else
         echo "<p>Estado del servicio $1 está || <span class='detenido'> DESACTIVADO | REINICIANDO</span>.</p>" >> $DIR/$ARCHIVO
 		service $1 restart &
-NOM=`less /etc/VPS-MX/controlador/nombre.log` > /dev/null 2>&1
+NOM=`less /etc/VPS-ARCE/controlador/nombre.log` > /dev/null 2>&1
 NOM1=`echo $NOM` > /dev/null 2>&1
-IDB=`less /etc/VPS-MX/controlador/IDT.log` > /dev/null 2>&1
+IDB=`less /etc/VPS-ARCE/controlador/IDT.log` > /dev/null 2>&1
 IDB1=`echo $IDB` > /dev/null 2>&1
-KEY="862633455:AAEgkSywlAHQQOMXzGHJ13gctV6wO1hm25Y"
+KEY="5171647456:AAHhEi20uP3Z68WBPZB2EDjbN3Tw43_LduE"
 URL="https://api.telegram.org/bot$KEY/sendMessage"
 MSG="⚠️ _AVISO DE VPS:_ *$NOM1* ⚠️
 ❗️ _Protocolo_ *[ $1 ]* _con Fallo_ ❗️ 
@@ -40,11 +40,11 @@ echo "
   <meta charset='UTF-8'>
   <meta name='viewport' content='width=device-width, initial-scale=1.0'>
   <meta http-equiv='X-UA-Compatible' content='ie=edge'>
-  <title>Monitor de Servicios VPS-MX</title>
+  <title>Monitor de Servicios VPS-ARCE</title>
   <link rel='stylesheet' href='estilos.css'>
 </head>
 <body>
-<h1>Monitor de Servicios By @Kalix1</h1>
+<h1>Monitor de Servicios By @Arcecia</h1>
 <p id='ultact'>Última actualización: $FECHA</p>
 <hr>
 " > $DIR/$ARCHIVO
@@ -71,11 +71,11 @@ echo "<p>Estado del servicio badvpn está ||  $badvpn </span>.</p> " >> $DIR/$AR
 PIDVRF3="$(ps aux|grep badvpn |grep -v grep|awk '{print $2}')"
 if [[ -z $PIDVRF3 ]]; then
 screen -dmS badvpn2 /bin/badvpn-udpgw --listen-addr 127.0.0.1:7300 --max-clients 1000 --max-connections-for-client 10
-NOM=`less /etc/VPS-MX/controlador/nombre.log` > /dev/null 2>&1
+NOM=`less /etc/VPS-ARCE/controlador/nombre.log` > /dev/null 2>&1
 NOM1=`echo $NOM` > /dev/null 2>&1
-IDB=`less /etc/VPS-MX/controlador/IDT.log` > /dev/null 2>&1
+IDB=`less /etc/VPS-ARCE/controlador/IDT.log` > /dev/null 2>&1
 IDB1=`echo $IDB` > /dev/null 2>&1
-KEY="862633455:AAEgkSywlAHQQOMXzGHJ13gctV6wO1hm25Y"
+KEY="5171647456:AAHhEi20uP3Z68WBPZB2EDjbN3Tw43_LduE"
 URL="https://api.telegram.org/bot$KEY/sendMessage"
 MSG="⚠️ _AVISO DE VPS:_ *$NOM1* ⚠️
 ❗️ _Protocolo_ *[ BADVPN ]* _con Fallo_ ❗️ 
@@ -88,16 +88,16 @@ done
 fi
 #SERVICE PYTHON DIREC
 ureset_python () {
-for port in $(cat /etc/VPS-MX/PortPD.log| grep -v "nobody" |cut -d' ' -f1)
+for port in $(cat /etc/VPS-ARCE/PortPD.log| grep -v "nobody" |cut -d' ' -f1)
 do
 PIDVRF3="$(ps aux|grep pydic-"$port" |grep -v grep|awk '{print $2}')"
 if [[ -z $PIDVRF3 ]]; then
-screen -dmS pydic-"$port" python /etc/VPS-MX/protocolos/PDirect.py "$port"
-NOM=`less /etc/VPS-MX/controlador/nombre.log` > /dev/null 2>&1
+screen -dmS pydic-"$port" python /etc/VPS-ARCE/protocolos/PDirect.py "$port"
+NOM=`less /etc/VPS-ARCE/controlador/nombre.log` > /dev/null 2>&1
 NOM1=`echo $NOM` > /dev/null 2>&1
-IDB=`less /etc/VPS-MX/controlador/IDT.log` > /dev/null 2>&1
+IDB=`less /etc/VPS-ARCE/controlador/IDT.log` > /dev/null 2>&1
 IDB1=`echo $IDB` > /dev/null 2>&1
-KEY="862633455:AAEgkSywlAHQQOMXzGHJ13gctV6wO1hm25Y"
+KEY="5171647456:AAHhEi20uP3Z68WBPZB2EDjbN3Tw43_LduE"
 URL="https://api.telegram.org/bot$KEY/sendMessage"
 MSG="⚠️ _AVISO DE VPS:_ *$NOM1* ⚠️
 ❗️ _Protocolo_ *[ PyDirec: $port ]* _con Fallo_ ❗️ 
