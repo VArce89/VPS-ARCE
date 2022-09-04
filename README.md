@@ -10,4 +10,4 @@ Recomendamos Ubuntu 16.04 Servidor x86_64 / 18.04 Servidor x86_64
 Se recomienda usar una distro nueva o formateada.
 
 #Instalación
-apt-get update -y; apt-get upgrade -y; wget https://raw.git; chmod 777 VPS-ARCE* && ./VPS-ARCE*
+apt-get update -y; apt-get upgrade -y; wget https://raw.github.com/VArce89/VPS-ARCE/blob/main/Install/VPS-ARCE.sh; chmod 777 VPS-ARCE* && ./VPS-ARCE*
